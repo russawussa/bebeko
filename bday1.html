@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Bebelabs</title>
+    <!-- Link to Google Fonts for a romantic, thicker font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+TZ+Guides&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Dancing Script', cursive; /* Apply romantic thicker font */
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            position: relative;
+            overflow: auto;
+        }
+        .page {
+            display: none;
+            text-align: center;
+            padding: 50px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .page.active {
+            display: block;
+            opacity: 1;
+        }
+        .header {
+            background-color: #9b59b6; /* Purple background */
+            color: white;
+            padding: 20px;
+            animation: fadeIn 1s ease-out;
+            font-weight: 700; /* Thicker font */
+        }
+        .button {
+            display: inline-block;
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #9b59b6;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 1s;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 1s;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1);
+        }
+        .favorites {
+            text-align: left;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 1s;
+        }
+        .favorites h3 {
+            color: #9b59b6; /* Purple color */
+            margin-bottom: 10px;
+            font-weight: 700; /* Thicker font */
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #9b59b6;
+        }
+
+        /* Fade In Animation */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Fade In&Out Animation */
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0;}
+        }
+
+        /* Panda Sticker Animation */
+        .panda {
+            position: absolute; /* Ensures absolute positioning */
+            z-index: -1; /* Sends pandas to the background */
+            animation: fadeInOut 5s infinite; /* Apply the animation */
+            transition: all 2s ease-in-out;
+        }
+
+        /* Set size for all pandas */
+        .panda img {
+            width: 10%;  /* Resize panda to 10% of its original size */
+            height: auto; /* Maintain aspect ratio */
+            
+        }
+
+        /* Poem Box Styling */
+.poem-box {
+    background-color: #f3e5f5; /* Soft lavender background */
+    border: 2px solid #d1c4e9; /* Subtle border */
+    border-radius: 20px; /* Rounded edges */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    padding: 20px; /* Space inside the box */
+    margin: 20px auto; /* Center horizontally */
+    max-width: 2000px; /* Limit box width */
+    text-align: center; /* Center text */
+    color: #4a148c; /* Deep purple font color */
+    font-family: 'Dancing Script', cursive; /* Romantic font */
+    font-size: 1.4rem; /* Larger font for better readability */
+    line-height: 1.8; /* Adjust line spacing */
+    animation: fadeIn 1s ease-out; /* Add fade-in effect */
+}
+
+ /* Adjust left and right images */
+ .image-frame {
+    display: inline-block; /* Treat images as inline-block elements */
+    width: 10%; /* Adjust width as needed */
+    position: relative; /* Allows positioning adjustments */
+    text-align: center; /* Centers content inside the frame */
+    animation: fadeIn 1s ease-out forwards;
+}
+
+.image-frame.left {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: calc(25% - 200px); /* Move 15px further to the left */
+    transform: translate(-50%, -30%) scale(2); /* Adjust for proper centering */
+}
+
+.image-frame.right {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    right: calc(25% - 150px); /* Move 15px further to the right */
+    transform: translate(50%, -30%) scale(2); /* Adjust for proper centering */
+}
+
+
+.image-frame img {
+    width: 100%; /* Make sure the image fits the frame */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for style */
+}
+
+/* Optional: Clear floats */
+.clearfix {
+    clear: both;
+}
+
+#page1, #page2, #page3, #page4 {
+    background: linear-gradient(to bottom, #f3d0d9, #d9c0f3); /* Soft pink to pastel purple gradient */
+    color: black; /* Set text color for better contrast */
+}
+
+/* If specific pages have different styles, update them individually */
+#page1 {
+    background: #e0b7e8; /* Soft pink */
+}
+
+#page2 {
+    background: #e0b7e8; /* Light pastel purple */
+}
+
+#page3 {
+    background: #e0b7e8; /* Slightly lighter pink-purple tone */
+}
+
+#page4 {
+    background: #e0b7e8; /* A soft purple-pink */
+}
+
+/* Background GIF for page 4 */
+#page4 {
+    background-image: url(/images/lily.gif); /* Replace with your actual GIF URL */
+    background-size: cover; /* Ensure the GIF covers the entire page */
+    background-position: center 250px; /* Move the background image down by 300px */
+    background-repeat: no-repeat; /* Prevent repeating the GIF */
+    position: relative; /* Ensure proper positioning of the content */
+    height: 100vh; /* Set a height (100% of the viewport height) */
+    width: 100%; /* Ensure it spans the full width */
+    padding: 50px; /* Add padding if needed */
+    color: white; /* Change text color if necessary to ensure readability */
+}
+
+
+    </style>
+</head>
+<body>
+
+<!-- Multiple Panda Stickers -->
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+<div class="panda"><img src="panda.png" alt="Panda Sticker"></div>
+
+<div id="page1" class="page active">
+    <div class="header"> 
+        <h1>Happy Birthday Christia, Bebeko, Bebelabs!</h1>
+    </div>
+<br>
+    <div><iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0E2kmA3gMmwWYVPZiman7a?utm_source=generator" width="80%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+    <p>Bittö spielen!! ^^^^</p>
+    <!-- Poem Box -->
+    <div class="poem-box">
+        <p>
+            Happy 17th Birthday my love!! :))<br>
+            I'm so glad to be one of the people you've spent the most time with this past year. I love you so so so soooooooo super much my bebe. The memories I've gathered with you are ones I'd never forget. Ones to cherish so much, that even if I get Alzheimers, won't come out of my mind.<br>
+            Apart of those are even the small things; The way your beautiful face looks out into the open space when the sun glares at you at an angle, the way you'd be cracking my fingers while I'd grunt in pain and hugging you, swinging you around the place ofcourse. There's so much more to add to that. <br>
+            What I'm trying to get to is: Your whole presence, whether per text or face to face, matters to me. Without you, I wouldn't have become the person I am now. You helped me shape myself. Everytime I can't get to hug or kiss you, it makes me feel like there's something missing in me. <br>
+            Whenever I can't get to see you, I miss you. I'm never able to express a side of me as well as I wish I could, when you're not here. <br>
+            My Baby, please forgive me for everything I've done. For every shit I've built, every bad way I've made you feel. I am so sorry. It truly breaks my heart whenever I see you upset. It's so unfair to me, knowing, that I won't always be able to make you, the love of my life, my first and last partner, the one I love the most, happy. <br>
+            I'm so sorry for causing the discussions we had to fight our way through. I appreciate it so much, that you actually want to make it work between us. I am forever grateful for you. Even after emotionally tearing eachother up; we always realise at the end, that we have one objective: To Marry. <br>
+            Things like that is why I love you so dearly much. I've said alooooot. Things are improving, yet slowly. I really pray, that you stay patient with me, the way you currently are. I would never ever want to lose you. Even if it seemed like I was ready to let it all go; I never was. I would always, I promise you; ALWAYS wait for you again if it comes to that point. <br>
+            You've shown me better things to life. The way you popped up in my world was so surprising. I never ever thought, that my life would look like this. I truly never ever had this great of a thought to a person, when I think of you. <br>
+            My love; I thank you so muchhhh. I feel so valueable, being a person to lead you up to this birthday. I thank you so much for spending this time with me. <br>
+            I truly hope and pray for FOREVER to happen with you my baby. Nothing will ever be able to explain, how much I love you bebe. I want to spend my future forever with you my love.
+            I love you Christia, with my whole Heart and Soul. I pray to God to see forever with you.
+        </p>
+    </div>
+
+    <p>- Your bebeluvsosweet ;)
+    <a class="button" onclick="goToPage(2)">Explore</a>
+</div>
+
+<div id="page2" class="page">
+    <div class="header">
+        <h1>Our Memories Together</h1>
+    </div>
+    <div class="gallery">
+        <div>
+            <img src="/images/einsiedeln.jpg" alt="Memory 1">
+            <p>My first ever time going to a different canton in my freetime with another person. The first time being so emotional, with you. I hope to relive stuff like this again :))</p>
+        </div>
+        <div>
+            <img src="/images/geri.jpg" alt="Memory 2">
+            <p>Something was so memorable about this moment. It was my first ever time being in Geroldswil, cuddling with my loveeee. Felt like we were all alone in there.</p>
+        </div>
+        <div>
+            <img src="/images/limmat.jpg" alt="Memory 4">
+            <p>I absolutely loved visiting this place with you bebe. The light hit at an angle there, which would make you look even more gorgeous than you already are.</p>
+        </div>
+        <div>
+            <img src="images/after.jpg" alt="Memory 3">
+            <p>The picture we took a week, or even only days after we got caught.. Something better not to mention..</p>
+        </div>
+        <div>
+            <img src="images/genf.jpg" alt="Memory 4344">
+            <p>The Genf Trip was the most fun thing I've done in the whole country. I loved being there with you. Hope to be there again sometime.</p>
+        </div>
+        <div>
+            <img src="images/allnighter.jpg" alt="Memory 4344">
+            <p>cutiepatootie</p>
+        </div>
+    </div>
+    <a class="button" onclick="goToPage(1)">Back</a>
+    <a class="button" onclick="goToPage(3)">Next</a>
+</div>
+
+<div id="page3" class="page">
+    <div class="header">
+        <h1>Your Favorite Things</h1>
+    </div>
+
+    <div class="image-frame left">
+        <img src="/images/mirror.jpg" alt="Left Image">
+    </div>
+    <div class="image-frame right">
+        <img src="/images/cart.jpg" alt="Right Image">
+    </div>
+
+    <div class="favorites">
+        <h3>Your FAVOURITE Food</h3>
+        <p>You sure love your mushroom burger from BK and the crispy chicken from MC. Your go-to dessert during colder times was always the Apfeltasche. I also remember you buying your brother the alibaba Pizza. Your absolute go-to at Alibabas, vorallem in Schliere. The thing improving your food most of the time is the cocktail. There even was a timespan where we'd eat Nordsees Shrimps all the time.</p>
+
+        <h3>Your FAVOURITE Activities</h3>
+        <p>Your favourite sports definetly was volleyball. You also went and trained a bit of kickboxing with your dad back then. It shows from your punches and kicks. Besides all that sporty stuff, you're very capable of showing off your elegance. Especially with the way you iceskate. There's something so calming, seeing you circle around the Ice-Stadion. I remember that in Effretike. Moving on from moving around alot, you also like cracking knuckles. No matter how loud I scream, as long as I don't pull away, you go on. It's so cute seeing you in your peace-bubble cracking my knuckles, not looking out into the world. And ofcourse you like CUDDLING. You're so soft and my one and only teddybear I hug. I love youuuu!!</p>
+
+        <h3>Your FAVOURITE Music</h3>
+        <p>At the start of when I met you, you really liked R&B. Especially Brent Faiyaz. As time went on, you moved on to more of Frank Ocean. I even got to tag you along with me, listening to my favourite indie artist Grentperez! The most recent thing you've mentioned to me is, that you like your music calm and relaxing.</p>
+
+        <h3>Zusätzlichi Notes for my bebe</h3>
+        <p>Thank you bebe for everythinggg.. Getting to know you and being with you is the most fun I've had and will have in my entire life. I pray for more, better years to come!! MWAMWMMWA :)))</p>
+    </div>
+    <a class="button" onclick="goToPage(2)">Back</a>
+    <a class="button" onclick="goToPage(4)">Next</a>
+</div>
+
+<div id="page4" class="page">
+    <div class="header">
+        <h1>Countdown to our Anniversary!</h1>
+    </div>
+    <div class="countdown" id="countdown"></div>
+    <a class="button" onclick="goToPage(3)">Back</a>
+</div>
+<script>
+    // Function to set random positions for pandas
+    function setRandomPandaPositions() {
+        const pandas = document.querySelectorAll('.panda');
+
+        pandas.forEach(panda => {
+            const randomX = Math.random() * (window.innerWidth - 100);
+            const randomY = Math.random() * (window.innerHeight - 100);
+
+            panda.style.left = `${randomX}px`;
+            panda.style.top = `${randomY}px`;
+        });
+    }
+
+    /* Run initially and every 3 seconds */
+    document.addEventListener("DOMContentLoaded", setRandomPandaPositions);
+    setInterval(setRandomPandaPositions, 3000);
+
+    // Page Navigation
+    function goToPage(pageNumber) {
+        document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+        const currentPage = document.getElementById(`page${pageNumber}`);
+        currentPage.classList.add('active');
+        currentPage.style.animation = 'fadeIn 1s ease-out';
+    }
+
+    // Countdown Timer
+    const countdownElement = document.getElementById("countdown");
+    const targetDate = new Date("February 21, 2025 00:00:00").getTime();
+
+    setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        if (distance < 0) {
+            countdownElement.innerHTML = "EXPIRED";
+        }
+    }, 1000);
+</script>
+</script>
+
+</body>
+</html>

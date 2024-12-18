@@ -1,0 +1,19 @@
+/* Fade In Animation */
+        @keyframes fadeInOut {
+    0% { opacity: 0; }       /* Start invisible */
+    50% { opacity: 1; }      /* Fully visible in the middle */
+    100% { opacity: 0; }     /* Fade out again */
+}
+
+        /* Panda Sticker Animation */
+        .panda img {
+            width: 10%;  /* Resize panda to 10% of its original size */
+            height: auto; /* Maintain aspect ratio */
+        }
+        
+        .panda {
+            position: absolute; /* Ensures absolute positioning */
+            z-index: -1; /* Sends pandas to the background */
+            animation: fadeInOut 5s infinite; /* Apply the animation */
+            transition: all 2s ease-in-out;
+}
